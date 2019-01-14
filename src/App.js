@@ -2,7 +2,8 @@ import React from 'react';
 
 class App extends React.Component {
     state = {
-        value: ''
+        value: '',
+        wall: []
     };
 
     handleChange = (event) => {
@@ -11,11 +12,23 @@ class App extends React.Component {
         });
     }
 
+    handleClick = () => {
+        this.setState({
+            value: '',
+            wall: [...this.state.wall, this.state.value]
+        })
+    }
+
     render() {
         return (
             <div>
-                <input value={this.state.value} data-testid="input" onChange={this.handleChange}/>
-                <button data-testid="post">Post</button>
+                <div>
+                    <input value={this.state.value} data-testid="input" onChange={this.handleChange}/>
+                    <button data-testid="post" onClick={this.handleClick}>Post</button>
+                </div>
+                <ul>
+                    {this.state.wall.map( (x, i) => <li key={`p${i}`} data-testid={`post-${i}`}>{x}</li>)}
+                </ul>
             </div>
         );
     }

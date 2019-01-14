@@ -31,6 +31,6 @@ test('the app contains a button that will post the input to the wall', () => {
     fireEvent.click(post_button);
     
     expect(my_input.value).toEqual("");
-    expect(getByTestId('post-1').textContent).toEqual("some words");
+    expect(getByTestId('post-0').textContent).toEqual("some words");
     cleanup();
 });
